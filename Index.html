@@ -1,1 +1,361 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Estado y Sociedad en la Globalización · FE-UNAM</title>
+<meta name="description" content="Optativa del núcleo terminal de la Facultad de Economía, UNAM. Imparte la Dra. Fabiola Jesavel Flores Nava. El Estado moderno, las luchas sociales y la geopolítica del capitalismo contemporáneo.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,900;1,9..144,400&family=Spectral:ital,wght@0,400;0,500;0,600;1,400&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#15181F;
+    --ink-soft:#222933;
+    --stone:#F3EEE4;
+    --stone-deep:#E8E0D0;
+    --paper:#FBF8F2;
+    --oxblood:#8E2A33;
+    --brass:#9C7E40;
+    --text:#20242C;
+    --text-soft:#5C5648;
+    --invert:#EDE7DA;
+    --invert-soft:#A7A293;
+    --line:rgba(33,36,44,.16);
+    --line-invert:rgba(237,231,218,.16);
+    --navy-1:#1E2E50;
+    --navy-2:#152440;
+    --navy-3:#0F1A30;
+  }
+
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{
+    background:var(--stone);
+    color:var(--text);
+    font-family:"Spectral",Georgia,serif;
+    font-size:18px;
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+    text-rendering:optimizeLegibility;
+  }
+  a{color:inherit}
+  .mono{font-family:"Space Mono",ui-monospace,monospace}
+
+  /* ---------- shared layout ---------- */
+  .wrap{max-width:1080px;margin:0 auto;padding:0 32px}
+  .eyebrow{
+    font-family:"Space Mono",monospace;
+    font-size:12px;letter-spacing:.22em;text-transform:uppercase;
+    color:var(--oxblood);
+    display:flex;align-items:center;gap:12px;
+  }
+  .eyebrow::before{content:"";width:26px;height:1px;background:var(--oxblood);display:inline-block}
+  .sec-title{
+    font-family:"Fraunces",serif;
+    font-size:clamp(1.6rem,3vw,2.4rem);
+    font-weight:600;
+    letter-spacing:-.01em;
+    text-transform:none;
+    gap:16px;
+    color:var(--brass);
+  }
+  .sec-title::before{width:32px;height:2px;margin-bottom:2px;background:var(--brass)}
+  section{padding:96px 0}
+
+  /* ---------- letterhead (membrete institucional) ---------- */
+  .letterhead{background:var(--ink);border-bottom:1px solid var(--line-invert)}
+  .letterhead .wrap{
+    display:flex;justify-content:space-between;align-items:center;gap:24px;
+    padding-top:20px;padding-bottom:20px;
+  }
+  .letterhead .escudo{height:72px;width:auto;display:block;flex:none;filter:brightness(0) invert(1)}
+  .letterhead .escudo.fe{height:66px}
+  .letterhead .lh-text{
+    display:flex;flex-direction:column;align-items:center;text-align:center;
+    line-height:1.3;flex:1;gap:6px;
+  }
+  .letterhead .lh-1{
+    font-family:"Space Mono",monospace;font-size:13px;letter-spacing:.16em;text-transform:uppercase;
+    color:var(--invert-soft);
+  }
+  .letterhead .lh-2{
+    font-family:"Fraunces",serif;font-weight:700;font-size:1.65rem;color:var(--invert);letter-spacing:-.01em;
+  }
+
+  /* ---------- hero ---------- */
+  .hero{
+    background:var(--ink);color:var(--invert);
+    padding:84px 0 0;position:relative;overflow:hidden;
+  }
+  .hero::after{display:none}
+  .hero .wrap{position:relative;z-index:1}
+  .hero .kicker{color:var(--brass)}
+  .hero .kicker::before{background:var(--brass)}
+  .hero h1{
+    font-family:"Fraunces",serif;
+    font-weight:900;
+    font-size:clamp(3rem,8.5vw,7rem);
+    line-height:1.08;
+    letter-spacing:-.01em;
+    margin:26px 0 0;
+    max-width:100%;
+    text-align:center;
+  }
+  .hero h1 em{font-style:italic;font-weight:400;color:var(--brass)}
+  .hero .lede{
+    font-size:clamp(1.05rem,1.8vw,1.4rem);
+    color:var(--invert);opacity:.86;
+    max-width:46ch;margin-top:28px;line-height:1.5;
+  }
+  .filebar{
+    margin-top:36px;border-top:1px solid var(--line-invert);
+    display:grid;grid-template-columns:repeat(3,1fr);
+  }
+  .filebar div{padding:28px 32px 28px 0;border-right:1px solid var(--line-invert)}
+  .filebar div:last-child{border-right:none;padding-right:0}
+  .filebar dt{
+    font-family:"Space Mono",monospace;font-size:11px;letter-spacing:.18em;
+    text-transform:uppercase;color:var(--invert-soft);margin-bottom:12px;
+  }
+  .filebar dd{font-size:1.25rem;color:var(--invert);line-height:1.35;font-family:"Fraunces",serif;font-weight:600}
+  .filebar .imparte dd{font-size:1.55rem;white-space:nowrap}
+  .filebar dd small{display:block;margin-top:10px}
+  .filebar-link{
+    display:inline-flex;align-items:center;gap:10px;
+    background:var(--brass);color:var(--ink);text-decoration:none;
+    font-family:"Space Mono",monospace;font-size:11px;letter-spacing:.08em;text-transform:uppercase;
+    padding:10px 18px;border:1px solid var(--brass);white-space:nowrap;
+    transition:background .2s,color .2s,border-color .2s;
+  }
+  .filebar-link:hover,.filebar-link:focus-visible{background:transparent;color:var(--brass);outline:none}
+  .filebar-link .arr{transition:transform .2s}
+  .filebar-link:hover .arr{transform:translateX(3px)}
+  .cols-single{grid-template-columns:1fr;max-width:560px;border:none}
+
+  /* ---------- objetivo ---------- */
+  .objetivo{background:var(--ink);border-top:1px solid var(--line-invert)}
+  .objetivo .grid{display:block;margin-top:40px;max-width:100%}
+  .objetivo .label{font-family:"Space Mono",monospace;font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:var(--invert-soft);padding-top:14px}
+  .objetivo .grid p{
+    font-family:"Fraunces",serif;font-weight:400;
+    font-size:clamp(1.4rem,2.8vw,2.05rem);line-height:1.4;letter-spacing:-.01em;
+    color:var(--invert);
+    text-align:justify;
+  }
+  .objetivo .grid p .hl{color:var(--brass);font-style:italic}
+
+  /* ---------- temario / larga duración ---------- */
+  .temario{background:var(--ink);border-top:1px solid var(--line-invert)}
+  .temario .head{display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:18px}
+  .temario h2{font-family:"Fraunces",serif;font-weight:600;font-size:clamp(1.8rem,3.6vw,2.6rem);letter-spacing:-.01em;margin-top:18px}
+  .temario .axis{font-family:"Space Mono",monospace;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--invert-soft);text-align:right;line-height:1.7}
+  .temario .axis b{color:var(--brass);font-weight:700}
+
+  .timeline{margin-top:56px;position:relative;padding-left:4px}
+  .timeline::before{
+    content:"";position:absolute;left:46px;top:10px;bottom:10px;width:1px;background:var(--line-invert);
+  }
+  @media(max-width:640px){.timeline::before{left:30px}}
+  .tema{display:grid;grid-template-columns:92px 1fr;gap:8px;padding:20px 0;position:relative}
+  @media(max-width:640px){.tema{grid-template-columns:60px 1fr}}
+  .tema .num{
+    font-family:"Fraunces",serif;font-weight:900;font-size:1.5rem;color:var(--brass);
+    position:relative;padding-top:2px;
+  }
+  .tema .num::after{
+    content:"";position:absolute;left:42px;top:14px;width:9px;height:9px;border-radius:50%;
+    background:var(--ink);border:1.5px solid var(--brass);transform:translateX(-50%);
+  }
+  @media(max-width:640px){.tema .num::after{left:26px}}
+  .tema h3{font-family:"Spectral",serif;font-weight:500;font-size:1.42rem;line-height:1.45;color:var(--invert)}
+  .tema:hover .num{color:var(--brass)}
+  .tema:hover .num::after{background:var(--brass)}
+  .tema+.tema{border-top:1px solid var(--line-invert)}
+
+  /* ---------- dos columnas: seminario + docente ---------- */
+  .split{background:var(--ink);color:var(--invert);padding-top:0}
+  .split .cols{display:grid;grid-template-columns:1fr 1fr;gap:0;border:1px solid var(--line-invert);margin-top:44px}
+  .split .col{padding:42px}
+  .split .col:first-child{border-right:1px solid var(--line-invert)}
+  .split .col .eyebrow{color:var(--brass)}
+  .split .col .eyebrow::before{background:var(--brass)}
+  .split h2{font-family:"Fraunces",serif;font-weight:600;font-size:1.7rem;margin:18px 0 22px;letter-spacing:-.01em}
+  .seminar-list{list-style:none;display:flex;flex-direction:column;gap:18px;margin-top:24px}
+  .seminar-list li{display:flex;gap:14px;font-size:1.05rem;line-height:1.5;color:var(--invert);opacity:.9}
+  .seminar-list li::before{content:"●";font-size:.55rem;color:var(--brass);line-height:2.4;flex:none}
+  .seminar-list--open{margin-top:28px}
+  .seminar-list--open li{font-size:1.45rem}
+  .docente .name{font-family:"Fraunces",serif;font-size:1.55rem;font-weight:600;color:var(--invert);line-height:1.2}
+  .docente .role{font-family:"Space Mono",monospace;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--invert-soft);margin:10px 0 24px}
+  .link-pill{
+    display:inline-flex;align-items:center;gap:10px;
+    font-family:"Space Mono",monospace;font-size:12px;letter-spacing:.1em;text-transform:uppercase;
+    color:var(--invert);text-decoration:none;
+    border:1px solid var(--line-invert);border-radius:999px;padding:11px 18px;
+    transition:background .2s,border-color .2s,color .2s;
+  }
+  .link-pill:hover,.link-pill:focus-visible{background:var(--brass);border-color:var(--brass);color:var(--ink);outline:none}
+  .link-pill .arr{transition:transform .2s}
+  .link-pill:hover .arr{transform:translateX(3px)}
+
+  /* ---------- bibliografía ---------- */
+  .biblio{background:var(--ink);border-top:1px solid var(--line-invert)}
+  .biblio .box{
+    display:flex;flex-direction:column;align-items:flex-start;gap:28px;
+    margin-top:36px;padding:40px;background:rgba(255,255,255,.04);border:1px solid var(--line-invert);
+  }
+  .biblio-desc{
+    font-family:"Fraunces",serif;font-weight:600;
+    font-size:clamp(1.5rem,2.8vw,2.1rem);letter-spacing:-.01em;
+    color:var(--invert);line-height:1.35;max-width:36ch;
+  }
+  .btn{
+    display:inline-flex;align-items:center;gap:12px;
+    background:var(--oxblood);color:var(--paper);text-decoration:none;
+    font-family:"Space Mono",monospace;font-size:13px;letter-spacing:.08em;text-transform:uppercase;
+    padding:16px 26px;border:1px solid var(--oxblood);white-space:nowrap;
+    transition:background .2s,color .2s;
+  }
+  .btn:hover,.btn:focus-visible{background:transparent;color:var(--oxblood);outline:none}
+  .btn .arr{transition:transform .2s}
+  .btn:hover .arr{transform:translate(3px,-3px)}
+
+  /* ---------- footer ---------- */
+  footer{background:var(--ink);color:var(--invert-soft);padding:52px 0}
+  footer .wrap{display:flex;justify-content:space-between;align-items:center;gap:20px;flex-wrap:wrap}
+  footer .sig{font-family:"Fraunces",serif;color:var(--invert);font-size:1.1rem}
+  footer .meta{font-family:"Space Mono",monospace;font-size:11px;letter-spacing:.14em;text-transform:uppercase;text-align:right;line-height:1.8}
+  footer .credit{font-family:"Space Mono",monospace;font-size:10px;letter-spacing:.08em;color:var(--invert-soft);margin-top:24px;border-top:1px solid var(--line-invert);padding-top:18px;width:100%}
+
+  /* ---------- reveal animation ---------- */
+  .reveal{opacity:0;transform:translateY(18px);transition:opacity .7s ease,transform .7s ease}
+  .reveal.in{opacity:1;transform:none}
+
+  /* ---------- responsive ---------- */
+  @media(max-width:760px){
+    section{padding:64px 0}
+    .wrap{padding:0 22px}
+    .filebar{grid-template-columns:1fr;}
+    .filebar div{border-right:none;border-bottom:1px solid var(--line-invert);padding:18px 0}
+    .filebar div:last-child{border-bottom:none}
+    .objetivo .grid{grid-template-columns:1fr;gap:18px}
+    .split .cols{grid-template-columns:1fr}
+    .split .col:first-child{border-right:none;border-bottom:1px solid var(--line-invert)}
+    .split .col{padding:32px}
+    .biblio .box{padding:28px}
+    .letterhead .lh-1{font-size:9px;letter-spacing:.08em}
+    .letterhead .lh-2{font-size:.92rem}
+    .letterhead .escudo{height:56px}
+    .letterhead .escudo.fe{height:52px}
+  }
+  @media(prefers-reduced-motion:reduce){
+    *{scroll-behavior:auto!important}
+    .reveal{opacity:1;transform:none;transition:none}
+    .link-pill,.btn,.tema .num{transition:none}
+  }
+</style>
+</head>
+<body>
+
+  <div class="letterhead">
+    <div class="wrap">
+      <img class="escudo" src="https://commons.wikimedia.org/wiki/Special:FilePath/Escudo-UNAM-escalable.svg" alt="Escudo de la Universidad Nacional Autónoma de México" onerror="this.style.display='none'">
+      <div class="lh-text">
+        <span class="lh-1">Universidad Nacional Autónoma de México</span>
+        <span class="lh-2">Facultad de Economía</span>
+      </div>
+      <img class="escudo fe" src="https://commons.wikimedia.org/wiki/Special:FilePath/Economia_escudo.svg" alt="Escudo de la Facultad de Economía, UNAM" onerror="this.style.display='none'">
+    </div>
+  </div>
+
+  <header class="hero">
+    <div class="wrap">
+      <p class="eyebrow kicker">Optativa · Próximo semestre</p>
+      <h1>Estado <em>y</em> Sociedad en la Globalización</h1>
+
+      <dl class="filebar reveal">
+        <div>
+          <dt>Horario</dt>
+          <dd>Martes y jueves<small>13:30 – 15:00 hrs</small></dd>
+        </div>
+        <div class="imparte">
+          <dt>Imparte</dt>
+          <dd>Dra. Fabiola Jesavel Flores Nava<small><a href="https://www.depfe.unam.mx/tutores/flores-nava.html" target="_blank" rel="noopener" class="filebar-link">Semblanza curricular <span class="arr">→</span></a></small></dd>
+        </div>
+        <div>
+          <dt>Área de Conocimiento</dt>
+          <dd>Núcleo de Historia y Desarrollo<small>Economía Política e Historia económica</small></dd>
+        </div>
+      </dl>
+    </div>
+  </header>
+
+  <section class="split">
+    <div class="wrap">
+      <p class="eyebrow sec-title">Forma de Trabajo</p>
+      <ul class="seminar-list seminar-list--open">
+        <li>Sesiones a modo de seminario (participación oral/escrita).</li>
+        <li>Apoyo y refuerzo a los proyectos de tesis de quienes cursan la materia.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="objetivo">
+    <div class="wrap">
+      <p class="eyebrow sec-title">Objetivo General</p>
+      <div class="grid">
+        <p class="reveal">Analizar conceptos claves que nos permitan definir el papel del <span class="hl">Estado moderno</span> en la sociedad y el significado de las luchas sociales en las transformaciones del poder estatal. Por otro lado, el desarrollo histórico del sistema capitalista en relación directa con las transformaciones históricas de los poderes Estatales para entender y caracterizar la etapa actual de los procesos <span class="hl">geopolíticos y geoeconómicos</span> del mundo contemporáneo.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="temario">
+    <div class="wrap">
+      <div class="head">
+        <div>
+          <p class="eyebrow sec-title">Temas Generales</p>
+        </div>
+      </div>
+
+      <div class="timeline">
+        <div class="tema reveal"><div class="num">I</div><h3>Génesis histórica del Estado moderno.</h3></div>
+        <div class="tema reveal"><div class="num">II</div><h3>El papel del Estado desde la larga duración: reformas sociales, estructuras políticas y desarrollo económico en el sistema-mundo moderno.</h3></div>
+        <div class="tema reveal"><div class="num">III</div><h3>Seguridad, territorio y población: la formación del Estado moderno desde las perspectivas del poder.</h3></div>
+        <div class="tema reveal"><div class="num">IV</div><h3>La institución racional estatal, bloques o grupos de poder, aparatos ideológicos de Estado o hegemonía.</h3></div>
+        <div class="tema reveal"><div class="num">V</div><h3>Fetichismo del Estado.</h3></div>
+        <div class="tema reveal"><div class="num">VI</div><h3>El papel del Estado moderno en los procesos de acumulación de capital contemporánea.</h3></div>
+        <div class="tema reveal"><div class="num">VII</div><h3>El Estado: su relación con el desarrollo y la crisis del capitalismo.</h3></div>
+        <div class="tema reveal"><div class="num">VIII</div><h3>Estrategias geopolíticas y geoeconómicas del mundo actual.</h3></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="biblio">
+    <div class="wrap">
+      <p class="eyebrow sec-title">Bibliografía del curso</p>
+      <div class="box reveal">
+        <p class="biblio-desc">Carpeta compartida con los textos que sostienen los temas generales</p>
+        <a class="btn" href="https://drive.google.com/drive/folders/1iLQZpiawtfY8REXpKbWyEC30QRtPBJdg?usp=sharing" target="_blank" rel="noopener">Abrir bibliografía <span class="arr">↗</span></a>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="wrap">
+      <p class="sig">Estado y Sociedad en la Globalización</p>
+    </div>
+  </footer>
+
+  <script>
+    const io = new IntersectionObserver((entries)=>{
+      entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } });
+    },{threshold:.14, rootMargin:'0px 0px -8% 0px'});
+    document.querySelectorAll('.reveal').forEach((el,i)=>{
+      el.style.transitionDelay = Math.min(i%8*60,360)+'ms';
+      io.observe(el);
+    });
+  </script>
+</body>
+</html>
 
